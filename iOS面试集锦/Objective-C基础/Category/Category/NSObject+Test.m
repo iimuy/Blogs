@@ -9,7 +9,7 @@
 
 @implementation NSObject (Test)
 - (void)test01 {
-    
+    NSLog(@"test01");
 }
 
 + (void)test02 {

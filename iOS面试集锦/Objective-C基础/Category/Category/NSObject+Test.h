@@ -9,7 +9,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface NSObject (Test)<NSCopying>
+@interface NSObject (Test)<NSCopying, NSMutableCopying>
+
+@property (nonatomic, assign) int age;
+@property (nonatomic, assign) int sex;
 
 - (void)test01;
 

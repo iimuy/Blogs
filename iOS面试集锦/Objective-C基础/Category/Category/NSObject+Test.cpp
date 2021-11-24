@@ -34824,7 +34824,10 @@ struct NSUUID_IMPL {
 
 #pragma clang assume_nonnull begin
 
-// @interface NSObject (Test)<NSCopying>
+// @interface NSObject (Test)<NSCopying, NSMutableCopying>
+
+// @property (nonatomic, assign) int age;
+// @property (nonatomic, assign) int sex;
 
 // - (void)test01;
 
@@ -34969,12 +34972,54 @@ struct _protocol_t _OBJC_PROTOCOL_NSCopying __attribute__ ((used)) = {
 };
 struct _protocol_t *_OBJC_LABEL_PROTOCOL_$_NSCopying = &_OBJC_PROTOCOL_NSCopying;
 
+static const char *_OBJC_PROTOCOL_METHOD_TYPES_NSMutableCopying [] __attribute__ ((used, section ("__DATA,__objc_const"))) = 
+{
+	"@24@0:8^{_NSZone=}16"
+};
+
+static struct /*_method_list_t*/ {
+	unsigned int entsize;  // sizeof(struct _objc_method)
+	unsigned int method_count;
+	struct _objc_method method_list[1];
+} _OBJC_PROTOCOL_INSTANCE_METHODS_NSMutableCopying __attribute__ ((used, section ("__DATA,__objc_const"))) = {
+	sizeof(_objc_method),
+	1,
+	{{(struct objc_selector *)"mutableCopyWithZone:", "@24@0:8^{_NSZone=}16", 0}}
+};
+
+struct _protocol_t _OBJC_PROTOCOL_NSMutableCopying __attribute__ ((used)) = {
+	0,
+	"NSMutableCopying",
+	0,
+	(const struct method_list_t *)&_OBJC_PROTOCOL_INSTANCE_METHODS_NSMutableCopying,
+	0,
+	0,
+	0,
+	0,
+	sizeof(_protocol_t),
+	0,
+	(const char **)&_OBJC_PROTOCOL_METHOD_TYPES_NSMutableCopying
+};
+struct _protocol_t *_OBJC_LABEL_PROTOCOL_$_NSMutableCopying = &_OBJC_PROTOCOL_NSMutableCopying;
+
 static struct /*_protocol_list_t*/ {
 	long protocol_count;  // Note, this is 32/64 bit
-	struct _protocol_t *super_protocols[1];
+	struct _protocol_t *super_protocols[2];
 } _OBJC_CATEGORY_PROTOCOLS_$_NSObject_$_Test __attribute__ ((used, section ("__DATA,__objc_const"))) = {
-	1,
-	&_OBJC_PROTOCOL_NSCopying
+	2,
+	&_OBJC_PROTOCOL_NSCopying,
+	&_OBJC_PROTOCOL_NSMutableCopying
+};
+
+static struct /*_prop_list_t*/ {
+	unsigned int entsize;  // sizeof(struct _prop_t)
+	unsigned int count_of_properties;
+	struct _prop_t prop_list[2];
+} _OBJC_$_PROP_LIST_NSObject_$_Test __attribute__ ((used, section ("__DATA,__objc_const"))) = {
+	sizeof(_prop_t),
+	2,
+	{{"age","Ti,N"},
+	{"sex","Ti,N"}}
 };
 
 extern "C" __declspec(dllimport) struct _class_t OBJC_CLASS_$_NSObject;
@@ -34986,7 +35031,7 @@ static struct _category_t _OBJC_$_CATEGORY_NSObject_$_Test __attribute__ ((used,
 	(const struct _method_list_t *)&_OBJC_$_CATEGORY_INSTANCE_METHODS_NSObject_$_Test,
 	(const struct _method_list_t *)&_OBJC_$_CATEGORY_CLASS_METHODS_NSObject_$_Test,
 	(const struct _protocol_list_t *)&_OBJC_CATEGORY_PROTOCOLS_$_NSObject_$_Test,
-	0,
+	(const struct _prop_list_t *)&_OBJC_$_PROP_LIST_NSObject_$_Test,
 };
 static void OBJC_CATEGORY_SETUP_$_NSObject_$_Test(void ) {
 	_OBJC_$_CATEGORY_NSObject_$_Test.cls = &OBJC_CLASS_$_NSObject;
