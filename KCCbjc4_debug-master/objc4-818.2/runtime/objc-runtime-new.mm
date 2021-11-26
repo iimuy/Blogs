@@ -3266,6 +3266,7 @@ load_images(const char *path __unused, const struct mach_header *mh)
     // Discover load methods
     {
         mutex_locker_t lock2(runtimeLock);
+        /// 预处理category和类的load方法
         prepare_load_methods((const headerType *)mh);
     }
 
@@ -3916,8 +3917,9 @@ static void schedule_class_load(Class cls)
     if (cls->data()->flags & RW_LOADED) return;
 
     // Ensure superclass-first ordering
+    // 递归查找父类，知道getSuperclass == nil
     schedule_class_load(cls->getSuperclass());
-
+    // 按照传递的cls 父类-->子类-->孙子类
     add_class_to_loadable_list(cls);
     cls->setInfo(RW_LOADED); 
 }
@@ -3936,13 +3938,16 @@ void prepare_load_methods(const headerType *mhdr)
     size_t count, i;
 
     runtimeLock.assertLocked();
-
+    /// 获取非懒加载的类信息列表
     classref_t const *classlist = 
         _getObjc2NonlazyClassList(mhdr, &count);
     for (i = 0; i < count; i++) {
+        // 收集当前类和父类的，父类优先
+        // 将类和load方法存入add_class_to_loadable_list数组中
         schedule_class_load(remapClass(classlist[i]));
     }
 
+    /// 获取非懒加载的分类信息列表
     category_t * const *categorylist = _getObjc2NonlazyCategoryList(mhdr, &count);
     for (i = 0; i < count; i++) {
         category_t *cat = categorylist[i];
@@ -3954,6 +3959,7 @@ void prepare_load_methods(const headerType *mhdr)
         }
         realizeClassWithoutSwift(cls, nil);
         ASSERT(cls->ISA()->isRealized());
+        /// 将分类的类和load方法存入loadable_categories数组中
         add_category_to_loadable_list(cat);
     }
 }

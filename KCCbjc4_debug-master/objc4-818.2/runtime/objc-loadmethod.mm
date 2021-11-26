@@ -59,6 +59,11 @@ static int loadable_categories_allocated = 0;
 * Class cls has just become connected. Schedule it for +load if
 * it implements a +load method.
 **********************************************************************/
+/**
+ * 将cls 和 对应的 +load 存储到loadable_classes 数组中
+ * loadable_classes_used 是 loadable_classes 的当前下标
+ * loadable_classes存储元素是 struct loadable_class 类型。
+ */
 void add_class_to_loadable_list(Class cls)
 {
     IMP method;
@@ -80,7 +85,13 @@ void add_class_to_loadable_list(Class cls)
                               loadable_classes_allocated *
                               sizeof(struct loadable_class));
     }
-    
+    /*
+     loadable_classes 数组元素
+     struct loadable_class {
+         Class cls;  // may be nil
+         IMP method;
+     };
+     */
     loadable_classes[loadable_classes_used].cls = cls;
     loadable_classes[loadable_classes_used].method = method;
     loadable_classes_used++;
@@ -93,6 +104,12 @@ void add_class_to_loadable_list(Class cls)
 * to its class. Schedule this category for +load after its parent class
 * becomes connected and has its own +load method called.
 **********************************************************************/
+
+/**
+ * 将cls 和 对应的 +load 存储到loadable_categories 数组中
+ * loadable_categories_used 是 loadable_categories 的当前下标
+ * loadable_categories 存储元素是 struct loadable_category 类型。
+ */
 void add_category_to_loadable_list(Category cat)
 {
     IMP method;
@@ -116,7 +133,12 @@ void add_category_to_loadable_list(Category cat)
                               loadable_categories_allocated *
                               sizeof(struct loadable_category));
     }
-
+/**
+ struct loadable_category {
+     Category cat;  // may be nil
+     IMP method;
+ };
+ */
     loadable_categories[loadable_categories_used].cat = cat;
     loadable_categories[loadable_categories_used].method = method;
     loadable_categories_used++;
