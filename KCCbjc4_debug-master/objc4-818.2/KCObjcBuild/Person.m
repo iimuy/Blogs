@@ -8,5 +8,7 @@
 #import "Person.h"
 
 @implementation Person
-
++(void)initialize {
+    NSLog(@"222");
+}
 @end
