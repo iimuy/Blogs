@@ -11,6 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface Person (Test)
 - (void)lnTest;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -335,8 +335,7 @@ objc_object::initInstanceIsa(Class cls, bool hasCxxDtor)
 #endif
 
 inline void 
-objc_object::initIsa(Class cls, bool nonpointer, UNUSED_WITHOUT_INDEXED_ISA_AND_DTOR_BIT bool hasCxxDtor)
-{ 
+objc_object::initIsa(Class cls, bool nonpointer, UNUSED_WITHOUT_INDEXED_ISA_AND_DTOR_BIT bool hasCxxDtor){
     ASSERT(!isTaggedPointer()); 
     
     isa_t newisa(0);

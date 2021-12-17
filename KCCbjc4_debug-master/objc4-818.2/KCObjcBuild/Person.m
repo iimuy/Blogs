@@ -11,4 +11,11 @@
 +(void)initialize {
     NSLog(@"222");
 }
+
+- (void)textClass{
+    
+}
++ (void)textMetaClass{
+    
+}
 @end

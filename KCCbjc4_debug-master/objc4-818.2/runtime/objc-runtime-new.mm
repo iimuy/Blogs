@@ -3366,7 +3366,10 @@ bool mustReadClasses(header_info *hi, bool hasDyldRoots)
 Class readClass(Class cls, bool headerIsBundle, bool headerIsPreoptimized)
 {
     const char *mangledName = cls->nonlazyMangledName();
-    
+    const char *cusName = "Person";
+    if (strcmp(mangledName, cusName) == 0) {
+        printf("ffff");
+    }
     if (missingWeakSuperclass(cls)) {
         // No superclass (probably weak-linked). 
         // Disavow any knowledge of this subclass.

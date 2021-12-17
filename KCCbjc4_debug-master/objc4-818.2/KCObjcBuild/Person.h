@@ -10,7 +10,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface Person : NSObject
-
+- (void)textClass;
++ (void)textMetaClass;
 @end
 
 NS_ASSUME_NONNULL_END
