@@ -4,4 +4,4 @@
 | KVC  | https://muy.notion.site/KVC-42e49886eb234f18abb63d2c991bfd3c |
 | Cagtegory | https://muy.notion.site/Category-dad15934a079427497442bbb31a43975 |
 | load、initialize | https://muy.notion.site/load-initialize-6d89dbfce62c4b10ad9e7c6fa6700d4a |
-| Runtime| https://muy.notion.site/iOS-Blogs-bbc7f15c3b2444c59335c8a1707a4d7d |
+| Runtime| https://muy.notion.site/Runtime-f9cce75ccac548769eb49cea7a6963c3 |
